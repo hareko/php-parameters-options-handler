@@ -25,7 +25,8 @@ class ParmOpts {
    *                                    G - get
    */
   public function __construct($pty = 'JPG') {
-    if (empty($argc)) { // request parameters
+   global $argc, $argv;
+   if (empty($argc)) { // request parameters
       $jsn = @json_decode(file_get_contents('php://input'), true);  // check for json body
       if (!is_array($jsn)) {
         $jsn = array(); // no json 
