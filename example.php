@@ -34,6 +34,8 @@ $obj = new ParmOpts(); // instantiate with default priority
 
 $opt = $obj->Opts($def);  // assign settings, update with the request values
 
+$prm = $obj->Get();  // request parameters 
+
 /* display result */
 header('Content-Type: text/html; charset=utf-8');
 echo 'ParmOpts usage sample<br><br>';
@@ -43,5 +45,5 @@ print_r($opt);  // updated options
 echo '</pre>';
 echo 'Parameters<br>';
 echo '<pre>';
-print_r($obj->Get());  // request parameters
+print_r($prm); // accepted parameters
 echo '</pre>';
