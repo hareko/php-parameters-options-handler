@@ -1,13 +1,13 @@
 <?php
 
 /*
- * Parameters and Options handler
+ * PHP parameters and Options handler
  * 
- * Accept request/command parameters
+ * Accept request/CLI parameters
  * Save options according to defaults
  * Supply saved parameters/options as array/object
  *
- * @package System
+ * @package ParmOpts
  * @author Vallo Reima
  * @copyright (C)2015
  */
@@ -16,23 +16,26 @@ class ParmOpts {
 
   private $rqt = array(); /* input parameters */
   private $opt = array(); /* option values */
+  private $jsn = false;   /* json request flag */
 
   /**
-   * accept the request or command parameters
+   * accept the request or CLI parameters
    * @param string $pty request data priority:
    *                                    J - json
    *                                    P - post
    *                                    G - get
    */
   public function __construct($pty = 'JPG') {
-   global $argc, $argv;
-   if (empty($argc)) { // request parameters
+    global $argc, $argv;
+    if (empty($argc)) { // request parameters
       $jsn = @json_decode(file_get_contents('php://input'), true);  // check for json body
-      if (!is_array($jsn)) {
+      if (is_array($jsn)) {
+        $this->jsn = true;  // json request
+      } else {
         $jsn = array(); // no json 
       }
       $this->Merge(array('J' => $jsn, 'P' => $_POST, 'G' => $_GET), strtoupper($pty));  // save
-    } else {  // command arguments
+    } else {  // CLI arguments
       for ($i = 1; $i < $argc; $i++) {  // loop the arguments
         $arg = mb_split('=', $argv[$i]);  // split to key/value
         $this->rqt[$arg[0]] = $arg[1];  // save
@@ -97,14 +100,14 @@ class ParmOpts {
 
   /**
    * supply the values
-   * @param string $prp property name (rqt/opt)
+   * @param string $prp property name (rqt/opt/jsn)
    * @param bool $flg -- true - dual mode
    * @return mixed
    */
-  public function Get($prp = 'rqt', $flg = true) {
+  public function Get($prp = 'rqt', $flg = false) {
     if (!isset($this->$prp)) {
       $r = array();
-    } else if ($flg) {
+    } else if ($flg && is_array($this->$prp)) {
       $r = new ArrayObject($this->$prp, ArrayObject::ARRAY_AS_PROPS); // object looking like array
     } else {
       $r = $this->$prp;
