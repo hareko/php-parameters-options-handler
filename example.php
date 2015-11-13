@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Parameters and Options handler
+ * PHP parameters and Options handler
  * 
  * Usage sample
  * 
