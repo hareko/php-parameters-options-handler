@@ -1,15 +1,15 @@
-# Parameters and Options handler #
+# PHP parameters and Options handler #
 
-There are two typical tasks, among the others, when you initialize the PHP script:
+There are two typical tasks, among the others, when you initialise the PHP script:
 
-- accept the request or command line parameters;
+- accept the request or CLI parameters;
 - assign the settings' values basing on the default options and the parameter values.
 
 The *ParmOpts* class supplies the methods simplifying these tasks.
 
 ## How it works ##
 
-The data input is detected during the class instantiation and the request or command parameters are saved.
+The data input is detected during the class instantiation and the request or CLI parameters are saved.
 The request parameters are accepted from different sources by overwriting the values of the same key according to given priority.
 
 The default options are updated with the input parameter values by adjusting the data types taken from the defaults.
@@ -40,12 +40,15 @@ Save the options, updating the defaults with the parameter values.
 - **$opt** - default options associative array (*'name' => 'default value'*)
 - **$rqt** - request parameters (default by input parameters)
 
-**$obj->Get( [ $prp = 'rqt' [, $flg = true ] ] );**
+**$obj->Get( [ $prp = 'rqt' [, $flg = false ] ] );**
 
 Read the saved data.
 
-- **$prp** - property, either *'rqt'* (request or command parameter values) or *'opt'* (option values)
-- **$flg** - data format: 
+- **$prp** - property:
+    - *'rqt'* - request or CLI parameter values
+    - *'opt'* - option values
+    - *'jsn'* - json request flag (*true/false*)
+- **$flg** - data format (ignored for *'jsn'*): 
     - *true* - dual, can be accessed as array or object
     - *false* - array
 
@@ -57,6 +60,13 @@ The following files are included:
 - *ParmOpts.php* - the class to handle parameters and options
 - *example.php* - usage sample
 - *readme.md*
+
+## ChangeLog ##
+
+13 Nov 2015
+
+- *ParmOpts.php*
+    - *jsn* bool property is added to indicate the json request
 
 Please [contact] on any product-related questions.
 
