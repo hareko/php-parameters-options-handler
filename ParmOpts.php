@@ -30,9 +30,10 @@ class ParmOpts {
     if (empty($argc)) { // request parameters
       $jsn = @json_decode(file_get_contents('php://input'), true);  // check for json body
       if (is_array($jsn)) {
-        $this->jsn = true;  // json request
+        $this->jsn = $jsn;  // json request
       } else {
-        $jsn = array(); // no json 
+        $this->jsn = isset($_SERVER['CONTENT_TYPE']) && strpos($_SERVER['CONTENT_TYPE'], 'json') !== false ? array() : false;  // empty json body?
+        $jsn = array(); // no json data
       }
       $this->Merge(array('J' => $jsn, 'P' => $_POST, 'G' => $_GET), strtoupper($pty));  // save
     } else {  // CLI arguments
