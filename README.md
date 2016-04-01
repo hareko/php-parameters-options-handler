@@ -71,7 +71,7 @@ The following files are included:
 01 Apr 2016
 
 - *ParmOpts.php*
-    - *jsn* false|array not json request or json data array
+    - *jsn* false|array - not json request or json data array
 
 Please [contact] on any product-related questions.
 
