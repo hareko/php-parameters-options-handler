@@ -14,9 +14,9 @@
 
 class ParmOpts {
 
-  private $rqt = array(); /* input parameters */
-  private $opt = array(); /* option values */
-  private $jsn = false;   /* json request flag */
+  protected $rqt = array(); /* input parameters */
+  protected $opt = array(); /* option values */
+  protected $jsn = null;    /* json request data */
 
   /**
    * accept the request or CLI parameters
