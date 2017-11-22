@@ -74,7 +74,7 @@ The following files are included:
     - *mds* property - several modes (*array*):
       - *http2* - HTTP/2 protocol (*true*)
       - *https* - secured connection (*true*)
-      - *xhr* - AJAX reqguest (*true*)
+      - *xhr* - AJAX request (*true*)
       - *rqm* - request method: CLI - command line, else GET, POST,...
 
 Please [contact] on any product-related questions.
