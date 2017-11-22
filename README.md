@@ -47,7 +47,7 @@ Read the saved data.
 - **$prp** - property:
     - *'rqt'* - request or CLI parameter values
     - *'opt'* - option values
-    - *'jsn'* - json request data (*array/false*)
+    - *'jsn'* - json request flag (*true/false*)
 - **$flg** - data format (ignored for *'jsn'*): 
     - *true* - dual, can be accessed as array or object
     - *false* - array
@@ -63,15 +63,19 @@ The following files are included:
 
 ## ChangeLog ##
 
-13 Nov 2015
-
-- *ParmOpts.php*
-    - *jsn* bool property is added to indicate the json request
-
 01 Apr 2016
 
 - *ParmOpts.php*
-    - *jsn* false|array - not json request or json data array
+    - *jsn* property - json content (*array*) or missing
+
+22 Nov 2017
+
+- *ParmOpts.php*
+    - *mds* property - several modes (*array*):
+      - *http2* - HTTP/2 protocol (*true*)
+      - *https* - secured connection (*true*)
+      - *xhr* - AJAX reqguest (*true*)
+      - *rqm* - request method: CLI - command line, else GET, POST,...
 
 Please [contact] on any product-related questions.
 
